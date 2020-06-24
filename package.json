@@ -1,37 +1,38 @@
 {
-  "name": "ng",
-  "version": "0.0.0",
+  "name": "ngx-docs-generator",
+  "version": "0.0.1",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "docs:build": "ts-node --project=./src/tsconfig.json ./src/",
+    "package": "npm-run-all -s package:clean package:build package:copy-templates package:publish:copyjson",
+    "package:clean": "rimraf ./package",
+    "package:build": "tsc -p src/tsconfig.json --declaration",
+    "package:copy-templates": "cpx -v ./src/templates/* ./package/templates",
+    "package:publish:copyjson": "cpx -v \"./package.json\" \"./package\""
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~9.1.1",
-    "@angular/common": "~9.1.1",
-    "@angular/compiler": "~9.1.1",
-    "@angular/core": "~9.1.1",
-    "@angular/forms": "~9.1.1",
-    "@angular/platform-browser": "~9.1.1",
-    "@angular/platform-browser-dynamic": "~9.1.1",
-    "@angular/router": "~9.1.1",
-    "rxjs": "~6.5.4",
-    "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "yargs": "^15.3.1",
+    "dgeni": "^0.4.12",
+    "dgeni-packages": "^0.28.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.1",
+    "@angular/animations": "~9.1.1",
     "@angular/cli": "~9.1.1",
+    "@angular/common": "~9.1.1",
+    "@angular/compiler": "~9.1.1",
     "@angular/compiler-cli": "~9.1.1",
+    "@angular/core": "~9.1.1",
+    "@angular/forms": "~9.1.1",
     "@angular/language-service": "~9.1.1",
-    "@types/node": "^12.11.1",
+    "@angular/platform-browser": "~9.1.1",
+    "@angular/platform-browser-dynamic": "~9.1.1",
+    "@angular/router": "~9.1.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "cpx": "^1.5.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.4.1",
@@ -39,9 +40,19 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "nodemon": "^2.0.3",
+    "npm": "^6.14.5",
+    "npm-run-all": "^4.1.5",
     "protractor": "~5.4.3",
-    "ts-node": "~8.3.0",
+    "rimraf": "^3.0.2",
+    "rxjs": "~6.5.4",
+    "ts-node": "^8.3.0",
+    "tslib": "^1.10.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "zone.js": "~0.10.2"
+  },
+  "bin": {
+    "docs-generator": "./bin/fs-docs-generator.js"
   }
 }

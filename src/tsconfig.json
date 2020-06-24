@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "lib": ["es2015"],
+    "moduleResolution": "node",
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "target": "es2015",
+    "baseUrl": ".",
+    "module": "commonjs",
+    "declaration": true,
+    "types": [
+      "node"
+    ],
+    "outDir": "../package"
+  }
+}
