@@ -11,13 +11,10 @@ const configPath = findUp.sync(['docs-config.js']);
 const config = configPath ? require(configPath) : {};
 
 // Get output path
-let outputPath = '';
-if (config?.output) {
-  outputPath = config.output;
-} else if (pkg?.version) {
-  outputPath = `docs/${pkg.version}`;
-} else {
-  outputPath = 'docs';
+let outputPath = config?.output || 'docs';
+
+if (pkg?.version) {
+  outputPath = `${outputPath}/${pkg.version}`;
 }
 
 export const OUTPUT_FOLDER = outputPath;
