@@ -126,11 +126,21 @@ export class ModuleDoc<T extends ModuleDocItem = ModuleDocItem> extends ClassDoc
 
       // Declarations might contain modules/components/directives/pipes
       // and must be sorted in meta.
-      this.declarations = [...decoratedInfo.declarations];
-      this.exports = [...decoratedInfo.exports];
+      if (decoratedInfo.declarations) {
+        this.declarations = [...decoratedInfo.declarations];
+      }
 
-      this.meta.imports = [...decoratedInfo.imports];
-      this.meta.providers = [...decoratedInfo.providers];
+      if (decoratedInfo.exports) {
+        this.exports = [...decoratedInfo.exports];
+      }
+
+      if (decoratedInfo.providers) {
+        this.meta.providers = [...decoratedInfo.providers];
+      }
+
+      if (decoratedInfo.imports) {
+        this.meta.imports = [...decoratedInfo.imports];
+      }
     }
   }
 

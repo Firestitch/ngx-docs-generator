@@ -5,9 +5,10 @@ import { docsPackager } from './docs-packager';
 import {
   FILES_EXCLUDED,
   FILES_INCLUDED,
-  OUTPUT_FOLDER,
+  FULL_OUTPUT_PATH,
   PROJECT_ROOT,
-  TEMPLATES_PATH
+  TEMPLATES_PATH,
+  updateIndexFile
 } from './config';
 
 docsPackager
@@ -56,7 +57,7 @@ docsPackager
     templateFinder.templateFolders = [TEMPLATES_PATH];
 
     // Specify where the writeFilesProcessor will write our generated doc files
-    writeFilesProcessor.outputFolder = OUTPUT_FOLDER;
+    writeFilesProcessor.outputFolder = FULL_OUTPUT_PATH;
   });
 
 
@@ -64,6 +65,8 @@ new Dgeni([docsPackager])
   .generate()
   .then(() => {
     console.log('Docs successfully generated!');
+
+    updateIndexFile();
   })
   .catch((e: any) => {
     console.error(e);

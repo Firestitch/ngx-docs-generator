@@ -84,7 +84,7 @@ export class EntryPointGroupper implements Processor{
     modules.forEach((doc) => {
       const module = ModuleDoc.new(doc);
 
-      module.declarations.forEach((declaration) => {
+      module.declarations?.forEach((declaration) => {
         const docItem = this.components.get(declaration)
           || this.directives.get(declaration)
           || this.pipes.get(declaration);
@@ -94,7 +94,7 @@ export class EntryPointGroupper implements Processor{
         }
       });
 
-      module.meta.providers.forEach((provider) => {
+      module.meta.providers?.forEach((provider) => {
         if (this.providers.has(provider)) {
           module.linkDeclaredEntity(this.providers.get(provider));
         }
@@ -104,7 +104,7 @@ export class EntryPointGroupper implements Processor{
     });
 
     this.modules.forEach((module) => {
-      module.exports.forEach((declaration) => {
+      module.exports?.forEach((declaration) => {
         if (module.members.has(declaration)) {
           module.linkExportedEntity(module.members.get(declaration));
         } else if (this.modules.has(declaration)) {
