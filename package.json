@@ -4,12 +4,12 @@
   "scripts": {
     "docs:build": "ts-node --project=./src/tsconfig.json ./src/",
     "package": "npm-run-all -s package:clean package:build package:copy-templates package:publish:copyjson",
+    "package:publish": "cd package && npm publish",
     "package:clean": "rimraf ./package",
     "package:build": "tsc -p src/tsconfig.json --declaration",
     "package:copy-templates": "cpx -v ./src/templates/* ./package/templates",
     "package:publish:copyjson": "cpx -v \"./package.json\" \"./package\""
   },
-  "private": true,
   "dependencies": {
     "yargs": "^15.3.1",
     "dgeni": "^0.4.12",
